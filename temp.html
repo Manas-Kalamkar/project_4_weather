@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Temperature</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#D9D9D9] text-white min-h-screen flex flex-col items-center justify-center px-4 py-10 font-sans">
+
+    <div class="w-full max-w-xl space-y-6">
+
+
+      <!--Temp Result -->
+      <div id="tempResult" class=" space-y-4 bg-[#191A23] p-6 rounded-xl shadow-lg border border-[#B9FF66]">
+        <div id="messageTemp" class="text-3xl font-bold p-6 bg-[#B9FF66] rounded-xl">Temperature details <span id="messageSpan" class="font-bold text-[#191A23]"></span></div>
+        <div id="temp" class="text-2xl"> Current temperature: <span id="tempValueSpan" class="font-bold text-[#B9FF66]"></span></div>
+        <div id="feelsLikeTemp" class="text-2xl"> Feels like temperature: <span id="feelsLikeValueSpan" class="font-bold text-[#B9FF66]"></span></div>
+        <div id="minTemp" class="text-2xl"> Minimum temp (daily): <span id="minValueSpan" class="font-bold text-[#B9FF66]"></span></div>
+        <div id="maxTemp" class="text-2xl"> Maximum temp (daily): <span id="maxValueSpan" class="font-bold text-[#B9FF66]"></span></div>
+        <div id="humidity" class="text-2xl"> Humidity: <span id="humidityValueSpan" class="font-bold text-[#B9FF66]"></span></div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex flex-wrap gap-4 justify-center mt-6">
+        <a href="index.html" class="bg-[#B9FF66] text-black font-semibold px-6 py-3 rounded-xl hover:bg-[#a0e755] transition">⬅️ Home</a>
+        <a href="wind.html" class="bg-[#191A23] border border-white text-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">💨 Wind Speed</a>
+        <a href="rain.html" class="bg-[#191A23] border border-white text-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">🌧️ Rain</a>
+        <a href="aqi.html" class="bg-[#191A23] border border-white text-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">🌫️ AQI</a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

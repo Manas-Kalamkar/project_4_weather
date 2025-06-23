@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather - Weather Forecast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Imprima&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body class="bg-white text-black overflow-auto" style = "font-family: Imprima;">
+<!-- Header -->
+<header id = "header" class="bg-[#FFFFFF30] xl:px-24 xl:py:20">
+  <nav class="flex items-center justify-around  h-16 xl:flex xl:justify-center xl:gap-10 xl:py-20">
+<!-- Logo and App name -->
+      <img src="src/logo.png" alt="" class = "object-contain p-6 xl:p-0">
+      <h1 class="invisible text-4xl items-center font-bold tracking-widest md:invisible xl:ml-5  xl:text-[3.4rem] xl:visible">Weather</h1>
+
+<!-- Navigation Bar -->
+      <div class = "z-50 hidden md:flex text-2xl dropdown-menu rounded-4xl absolute top-full  left-0 max-xl:bg-gray-100 w-full  flex-col gap-6 items-center py-2 font-bold xl:static xl:flex-row xl:justify-end xl:gap-[4rem] xl:tracking-widest xl:font-thin xl:px-2 xl:text-[1.6rem]">
+        <ul class="flex gap-6 flex-col items-center xl:flex-row xl:gap-12 ">
+          <li class="hover:text-[#B9FF66] " ><a href="#homePage">Home</a></li>
+          <li class="hover:text-[#B9FF66] " ><a href="#about">About Us</a></li>
+          <li class="hover:text-[#B9FF66] " ><a href="#contact">Contact Us</a></li>
+          <li class="hover:text-[#B9FF66] flex w-fit items-center md:w-fit" >Search City: <input type="text" class="m-3 w-40 items-center border-2 inline lg:w-60 lg:p-2" name="city" id="city" placeholder="e.g. Mumbai"></li>
+          
+        </ul>
+
+      </div>
+
+<!-- Menu Button for small screen -->
+      <div id ="toggle-btn" class="toggle-btn xl:hidden ">
+        <i class="fa-solid fa-bars xl:fa-xl scale-150 p-6"></i>
+      </div>
+  </nav>
+</header>
+
+<!-- main section -->
+<main class="mx-4 lg:mx-16 ">
+<!-- home page -->
+  <div id="homePage" class="flex mt-24 xl:m-16 justify-around">
+<!-- leftside of homepage -->
+    <div id="leftSide" class = "flex flex-col gap-6">
+
+<!-- Heading -->
+      <div id="heading" class="text-3xl w-[18ch] break-words whitespace-normal lg:text-4xl items-center font-bold tracking-widest xl:ml-5  xl:text-[5.4rem] lg:leading-[5.4rem]">
+        Stay Ahead of      
+        the Weather, Wherever You Are.
+      </div>
+
+<!-- SubHeading -->
+      <div id="subHeading" class="break-words lg:w-[40ch] whitespace-normal text-2xl">
+        Get accurate, real-time forecasts with Weather
+        .From temperature and wind to detailed weather trends — all in one place.
+      </div>
+
+<!-- Check for forcast button for taking input -->
+      <div id="checkForcast">
+        <button id="checkForcastbtn" class="bg-black whitespace-nowrap border-[0.4rem] border-black px-4 py-2 rounded-xl lg:px-6 lg:py-4 lg:rounded-[1rem] text-[1.6rem] text-[#FFFFFF] xl:px-[2.2rem] xl:py-6 hover:bg-white hover:text-black shadow-2xl hover:shadow-[#00000070]">Check for forcast</button>
+      </div>
+    </div>
+
+<!-- right side of homepage -->
+    <div id="rightSide" class="invisible md:visible">
+
+<!-- sun's animation -->
+      <lottie-player renderer="svg" src="animation/sunny.json" background="transparent" speed="0.5" autoplay loop class = "w-[250px] h-[250px] md:w-[450px] md:h-[450px] lg:w-[650px] lg:h-[650px] items-center  "></lottie-player>
+    </div>
+  </div>
+
+<!-- cards heading diplays city and country name -->
+  <div id="cardsHeading" class="bg-[#B9FF66] font-bold rounded-[0.4rem] w-fit px-8 text-black text-2xl py-4 lg:max-w-fit lg:max-h-[68.09px] lg:text-[3rem] xl:mx-16 my-8 lg:my-16 p-0">Weather Info <span id="cityAndCountrySpan"></span></div>
+
+<!-- cards  -->
+<div id="cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 xl:m-16">
+
+<!-- temperature's card -->
+    <div id="card1" class=" bg-[#D9D9D9] flex rounded-xl  p-[0.6rem] sm:p-[1rem] justify-around  sm:rounded-[37.19px] lg:rounded-[57.19px] max-h-[411px] border-2 border-black sm:py-16 sm:pl-10 " >
+      <div class="cardLeftSide flex flex-col justify-around">
+        <div  class="cardLeftSidedUp text-[1.4rem] sm:text-[2rem] lg:text-[2.4rem] bg-[#B9FF66] lg:p-0 rounded-xl font-semibold w-fit">
+          <h1>Temperature <span id="tempSpan" class="font-bold text-white"></span></h1>
+        </div>
+        <div class="cardLeftSideDown flex items-center justify-start ">
+          <a href="temp.html">
+
+          <div class="circle bg-black rounded-3xl p-2 text-[#B]">
+            <img src="src/arrow.svg" alt="" id="arrow">
+          </div>
+        </a>
+          <div id="learnmore1" class="learnMore font-bold w-[12ch] lg:text-[1.5rem] ml-[0.5rem] text-[#7D7D7D]">Learn more</div>
+
+          
+          </div>
+        
+      </div>
+      <div class="cardRightSide max-w-[340px]"> 
+        <lottie-player renderer="svg" src="animation/temp.json" background="transparent" speed="0.5" autoplay loop class = "w-[200px] h-[200px] md:w-fit items-center  "></lottie-player>
+
+      </div>
+
+    </div>
+
+<!-- wind's card -->
+    <div id="card2" class=" bg-[#B9FF66] flex rounded-xl p-[0.6rem] sm:p-[1rem] justify-around max-w-[798px] sm:rounded-[37.19px] lg:rounded-[57.19px] max-h-[411px] border-2 border-black sm:py-16 sm:pl-10 " >
+      <div class="cardLeftSide flex flex-col justify-around">
+        <div class="cardLeftSideUp text-[1.4rem] sm:text-[2rem] lg:text-[2.4rem] bg-[#FFFFFF]  rounded-[10px] font-semibold lg:flex-col lg:w-fit flex-col w-fit ">
+          <h1>Wind</h1>
+          <h1>Speed <span id="windSpan" class="font-bold text-black"></span></h1>
+        </div>
+        <div class="cardLeftSideDown flex items-center justify-start ">
+          <a href="wind.html">
+          <div class="circle bg-black rounded-3xl p-2 text-[#B]">
+            <img src="src/arrow.svg" alt="" id="arrow">
+          </div>
+            </a>
+          <div id="learnmore2" class="learnMore font-bold w-[12ch] lg:text-[1.5rem] ml-[0.5rem] text-[#7D7D7D]">Learn more</div>
+
+          </div>
+        
+      </div>
+      <div class="cardRightSide max-w-[340px]"> 
+        <lottie-player renderer="svg" src="animation/wind.json" background="transparent" speed="0.5" autoplay loop class = "w-[200px] h-[200px] md:w-fit items-center  "></lottie-player>
+
+      </div>
+
+    </div>
+
+<!-- rain's card -->
+    <div id="card3" class=" bg-[#191A23] flex rounded-xl  p-[0.6rem] sm:p-[1rem] justify-around max-w-[798px] sm:rounded-[37.19px] lg:rounded-[57.19px] max-h-[411px] border-2 border-black sm:py-16 sm:pl-10 
+    " >
+      <div class="cardLeftSide flex flex-col justify-around">
+        <div class="cardLeftSideUp text-[1.4rem] sm:text-[2rem] lg:text-[2.4rem] bg-[#FFFFFF]  rounded-[10px] font-semibold lg:flex-col lg:w-fit flex-col w-fit ">
+          <h1>Rain</h1>
+          <h1>Probability <span id="rainSpan" class="font-bold text-black"></span></h1>
+        </div>
+        <div class="cardLeftSideDown flex items-center justify-start ">
+          
+          <a href="rain.html"><div class="circle bg-white rounded-3xl p-2 text-[#B]">
+            <img src="src/arrow.svg" alt="" id="arrow" class="">
+          </div></a>
+          <div id="learnmore3" class="learnMore font-bold w-[12ch] lg:text-[1.5rem] ml-[0.5rem] text-[#7D7D7D]">Learn more</div>
+        
+          </div>
+        
+      </div>
+      <div class="cardRightSide max-w-[340px]"> 
+        <lottie-player renderer="svg" src="animation/rain.json" background="transparent" speed="0.5" autoplay loop class = "w-[200px] h-[200px] md:w-fit items-center  "></lottie-player>
+
+      </div>
+
+    </div>
+
+<!-- aqi's card -->
+    <div id="card4" class=" bg-[#D9D9D9] flex rounded-xl p-[0.6rem] sm:p-[1rem] justify-around max-w-[798px] sm:rounded-[37.19px] lg:rounded-[57.19px] max-h-[411px] border-4 border-black sm:py-16 sm:pl-10 " >
+      <div class="cardLeftSide flex flex-col justify-around">
+        <div class="cardLeftSideUp text-[1.4rem]  sm:text-[2rem] lg:text-[2.4rem] bg-[#B9FF66] rounded-xl font-semibold  w-fit">
+          <h1>AQI <span id="aqiSpan" class="font-bold text-white"></span></h1>
+        </div>
+        <div class="cardLeftSideDown flex items-center justify-start ">
+          <a href="aqi.html">
+          <div class="circle bg-black rounded-3xl p-2 text-[#B]">
+            <img src="src/arrow.svg" alt="" id="arrow">
+          </div></a>
+          <div id="learnmore4" class="learnMore font-bold w-[12ch] lg:text-[1.5rem] ml-[0.5rem] text-[#7D7D7D]">Learn more</div>
+
+          </div>
+        
+      </div>
+      <div class="cardRightSide max-w-[340px]"> 
+        <lottie-player renderer="svg" src="animation/aqii.json" background="transparent" speed="0.5" autoplay loop class = "w-[200px] h-[200px] md:w-fit items-center  "></lottie-player>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- about us section -->
+<section id="about" class="bg-[#B9FF66] text-gray-900 py-16 px-6 xl:px-32 rounded-xl my-16">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl lg:text-5xl font-bold tracking-wide mb-6">About Weather</h2>
+    <p class="text-xl lg:text-2xl leading-relaxed text-gray-700">
+      Weather is your smart companion for real-time weather insights.
+      We deliver accurate, hyperlocal forecasts powered by reliable APIs,
+      so you’re always a step ahead of the weather. From sunny skies to stormy nights,
+      Weather helps you plan better and live smarter.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 text-left">
+      <div class="bg-[#B9FF66] text-black p-6 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-semibold mb-2">Why Us?</h3>
+        <p class="text-lg">We provide instant, location-based weather with intuitive visuals and smart tools.</p>
+      </div>
+      <div class="bg-[#B9FF66] text-black p-6 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-semibold mb-2">What We Offer</h3>
+        <p class="text-lg">Live temperature, wind speed, AQI, rain probability, and more — all animated.</p>
+      </div>
+      <div class="bg-[#B9FF66] text-black p-6 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-semibold mb-2">Our Goal</h3>
+        <p class="text-lg">Making weather tracking easy, beautiful, and helpful for everyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- contact us section -->
+<section id="contact" class="bg-[#191A23] text-white py-16 px-6 xl:px-32 rounded-xl my-16">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl lg:text-5xl font-bold tracking-wide mb-6 text-center">Contact Us</h2>
+    <p class="text-xl text-center mb-10">
+      Have a question or suggestion? We'd love to hear from you.
+    </p>
+
+    <form class="flex flex-col gap-6">
+      <input type="text" placeholder="Your Name" class="p-4 rounded-md border border-black text-xl focus:outline-none">
+      <input type="email" placeholder="Your Email" class="p-4 rounded-md border border-black text-xl focus:outline-none">
+      <textarea placeholder="Your Message" rows="5" class="p-4 rounded-md border border-black text-xl focus:outline-none"></textarea>
+      <button type="submit" class="bg-black text-[#B9FF66] font-bold px-6 py-4 rounded-xl hover:bg-[#222] hover:shadow-lg transition text-xl">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+</body>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="script.js"></script>
+</html>
