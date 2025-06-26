@@ -14,13 +14,6 @@ A responsive and interactive weather forecast web application built using **HTML
 - 📦 **Local Storage** – Stores latest search so users can revisit without re-entering
 - 📱 **Fully Responsive UI** – Mobile-first layout using TailwindCSS
 
----
-
-## 📸 Screenshots
-
-> Add your app screenshots here if available  
-> `![Home Page](screenshots/home.png)`  
-> `![Temperature Page](screenshots/temp.png)`  
 
 ---
 
