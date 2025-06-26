@@ -5,7 +5,7 @@ const cityInput = document.getElementById('city');
 const apiKey = 'a0824c7a15850d3021f120f4201ffac6'; 
 
 //getting the data for main index page using cityInput and local storage
-if(window.location.pathname.includes('index.html') || window.location.pathname === ('/') || window.location.pathname.includes('project_4_weather')){
+if(window.location.pathname.includes('index.html') || window.location.pathname === ('/') )){
 
     if(cityInput){
 cityInput.addEventListener('keypress', async (e) => {  
