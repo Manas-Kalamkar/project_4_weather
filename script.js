@@ -5,7 +5,7 @@ const cityInput = document.getElementById('city');
 const apiKey = 'a0824c7a15850d3021f120f4201ffac6'; 
 
 //getting the data for main index page using cityInput and local storage
-if(window.location.pathname.includes('index.html') || window.location.pathname === ('/') )){
+if(window.location.pathname.includes('index.html') || window.location.pathname === ('/') || windows.location.pathname.includes("project_4_weather")){
 
     if(cityInput){
 cityInput.addEventListener('keypress', async (e) => {  
@@ -13,7 +13,7 @@ cityInput.addEventListener('keypress', async (e) => {
     if (e.key === "Enter") {
         const cityName = cityInput.value.trim();
         cityInput.value = '';
-    console.log(city
+
     if(!cityName){
         alert("Please enter a city name.");
         return;
