@@ -4,6 +4,8 @@ A responsive and interactive weather forecast web application built using **HTML
 
 ---
 
+Live Demo: https://manas-kalamkar.github.io/project_4_weather/
+
 ## 🚀 Features
 
 - 🌍 **City-based Forecast** – Search by city name to get current weather data
